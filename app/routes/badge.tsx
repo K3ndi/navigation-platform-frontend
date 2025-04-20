@@ -7,6 +7,7 @@ export default function BagdeRewards() {
       <p className="text-gray-700">
         Here you can view and manage your badge rewards.
       </p>
+      eww
     </div>
   );
 }
