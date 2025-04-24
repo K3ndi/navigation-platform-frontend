@@ -4,6 +4,7 @@ import { Button } from "primereact/button";
 import "primeflex/primeflex.css";
 import { Link, Outlet, useLocation } from "react-router";
 import { useEffect, useState } from "react";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 
 const SIDEBAR_WIDTH = 250;
 
@@ -40,9 +41,23 @@ export default function SidebarLayout() {
     transition: "background-color 0.3s",
   });
 
+  const handleLogout = () => {
+    confirmDialog({
+      message: "Are you sure you want to logout?",
+      header: "Confirm Logout",
+      icon: "pi pi-sign-out",
+      acceptLabel: "Yes",
+      rejectLabel: "Cancel",
+      accept: () => {
+        // 👉 Replace this with actual logout logic
+        console.log("Logging out...");
+        window.location.href = "/login"; // or navigate using router
+      },
+    });
+  };
+
   return (
     <div className="flex">
-      {/* Toggle Button for mobile */}
       {isMobile && (
         <Button
           icon="pi pi-bars"
@@ -67,7 +82,7 @@ export default function SidebarLayout() {
         style={{
           width: `${SIDEBAR_WIDTH}px`,
           height: "100vh",
-          position: isMobile ? "fixed" : "fixed",
+          position: "fixed",
           top: 0,
           left: 0,
           borderRadius: 0,
@@ -83,67 +98,83 @@ export default function SidebarLayout() {
             color: sidebarTextColor,
             display: "flex",
             flexDirection: "column",
+            justifyContent: "space-between",
           }}
         >
-          <h2
-            className="mb-4"
-            style={{ fontSize: "1.5rem", fontWeight: "600" }}
-          >
-            My App
-          </h2>
+          <div>
+            <h2
+              className="mb-4"
+              style={{ fontSize: "1.5rem", fontWeight: "600" }}
+            >
+              My App
+            </h2>
 
-          <nav className="flex flex-column gap-2">
-            <Link
-              to="/journeys"
-              style={navLinkStyle("/journeys")}
-              onClick={() => isMobile && setVisible(false)}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.backgroundColor = hoverBgColor)
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor =
-                  location.pathname === "/journeys"
-                    ? activeBgColor
-                    : "transparent")
-              }
-            >
-              Journey List
-            </Link>
-            <Link
-              to="/journey-details"
-              style={navLinkStyle("/journey-details")}
-              onClick={() => isMobile && setVisible(false)}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.backgroundColor = hoverBgColor)
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor =
-                  location.pathname === "/journey-details"
-                    ? activeBgColor
-                    : "transparent")
-              }
-            >
-              Journey Details
-            </Link>
-            <Link
-              to="/badge-reward"
-              style={navLinkStyle("/badge-reward")}
-              onClick={() => isMobile && setVisible(false)}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.backgroundColor = hoverBgColor)
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor =
-                  location.pathname === "/badge-reward"
-                    ? activeBgColor
-                    : "transparent")
-              }
-            >
-              Daily Reward Badge
-            </Link>
-          </nav>
+            <nav className="flex flex-column gap-2">
+              <Link
+                to="/journeys"
+                style={navLinkStyle("/journeys")}
+                onClick={() => isMobile && setVisible(false)}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor = hoverBgColor)
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    location.pathname === "/journeys"
+                      ? activeBgColor
+                      : "transparent")
+                }
+              >
+                Journey List
+              </Link>
+              <Link
+                to="/journey-details"
+                style={navLinkStyle("/journey-details")}
+                onClick={() => isMobile && setVisible(false)}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor = hoverBgColor)
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    location.pathname === "/journey-details"
+                      ? activeBgColor
+                      : "transparent")
+                }
+              >
+                Journey Details
+              </Link>
+              <Link
+                to="/badge-reward"
+                style={navLinkStyle("/badge-reward")}
+                onClick={() => isMobile && setVisible(false)}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor = hoverBgColor)
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    location.pathname === "/badge-reward"
+                      ? activeBgColor
+                      : "transparent")
+                }
+              >
+                Daily Reward Badge
+              </Link>
+            </nav>
+          </div>
+
+          {/* 👇 Logout Button */}
+          <div className="mt-4">
+            <Button
+              label="Logout"
+              icon="pi pi-sign-out"
+              className="p-button-danger p-button-outlined w-full"
+              onClick={handleLogout}
+            />
+          </div>
         </div>
       </Sidebar>
+
+      {/* Confirm Dialog Component */}
+      <ConfirmDialog />
 
       {/* Main Content */}
       <div

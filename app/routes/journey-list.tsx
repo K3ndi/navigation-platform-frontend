@@ -19,16 +19,56 @@ export default function JourneyList() {
   const [loading, setLoading] = useState<boolean>(true);
   const [globalFilterValue, setGlobalFilterValue] = useState<string>("");
   const [representatives] = useState<any[]>([
-    { name: "Amy Elsner", image: "amyelsner.png" },
-    { name: "Anna Fali", image: "annafali.png" },
-    { name: "Asiya Javayant", image: "asiyajavayant.png" },
-    { name: "Bernardo Dominic", image: "bernardodominic.png" },
-    { name: "Elwin Sharvill", image: "elwinsharvill.png" },
-    { name: "Ioni Bowcher", image: "ionibowcher.png" },
-    { name: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
-    { name: "Onyama Limba", image: "onyamalimba.png" },
-    { name: "Stephen Shaw", image: "stephenshaw.png" },
-    { name: "XuXue Feng", image: "xuxuefeng.png" },
+    { StartLocation: "Amy Elsner", image: "amyelsner.png" },
+    { StartLocation: "Anna Fali", image: "annafali.png" },
+    { StartLocation: "Asiya Javayant", image: "asiyajavayant.png" },
+    { StartLocation: "Bernardo Dominic", image: "bernardodominic.png" },
+    { StartLocation: "Elwin Sharvill", image: "elwinsharvill.png" },
+    { StartLocation: "Ioni Bowcher", image: "ionibowcher.png" },
+    { StartLocation: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
+    { StartLocation: "Onyama Limba", image: "onyamalimba.png" },
+    { StartLocation: "Stephen Shaw", image: "stephenshaw.png" },
+    { StartLocation: "XuXue Feng", image: "xuxuefeng.png" },
+    { StartLocation: "Amy Elsner", image: "amyelsner.png" },
+    { StartLocation: "Anna Fali", image: "annafali.png" },
+    { StartLocation: "Asiya Javayant", image: "asiyajavayant.png" },
+    { StartLocation: "Bernardo Dominic", image: "bernardodominic.png" },
+    { StartLocation: "Elwin Sharvill", image: "elwinsharvill.png" },
+    { StartLocation: "Ioni Bowcher", image: "ionibowcher.png" },
+    { StartLocation: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
+    { StartLocation: "Onyama Limba", image: "onyamalimba.png" },
+    { StartLocation: "Stephen Shaw", image: "stephenshaw.png" },
+    { StartLocation: "XuXue Feng", image: "xuxuefeng.png" },
+    { StartLocation: "Amy Elsner", image: "amyelsner.png" },
+    { StartLocation: "Anna Fali", image: "annafali.png" },
+    { StartLocation: "Asiya Javayant", image: "asiyajavayant.png" },
+    { StartLocation: "Bernardo Dominic", image: "bernardodominic.png" },
+    { StartLocation: "Elwin Sharvill", image: "elwinsharvill.png" },
+    { StartLocation: "Ioni Bowcher", image: "ionibowcher.png" },
+    { StartLocation: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
+    { StartLocation: "Onyama Limba", image: "onyamalimba.png" },
+    { StartLocation: "Stephen Shaw", image: "stephenshaw.png" },
+    { StartLocation: "XuXue Feng", image: "xuxuefeng.png" },
+    { StartLocation: "Amy Elsner", image: "amyelsner.png" },
+    { StartLocation: "Anna Fali", image: "annafali.png" },
+    { StartLocation: "Asiya Javayant", image: "asiyajavayant.png" },
+    { StartLocation: "Bernardo Dominic", image: "bernardodominic.png" },
+    { StartLocation: "Elwin Sharvill", image: "elwinsharvill.png" },
+    { StartLocation: "Ioni Bowcher", image: "ionibowcher.png" },
+    { StartLocation: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
+    { StartLocation: "Onyama Limba", image: "onyamalimba.png" },
+    { StartLocation: "Stephen Shaw", image: "stephenshaw.png" },
+    { StartLocation: "XuXue Feng", image: "xuxuefeng.png" },
+    { StartLocation: "Amy Elsner", image: "amyelsner.png" },
+    { StartLocation: "Anna Fali", image: "annafali.png" },
+    { StartLocation: "Asiya Javayant", image: "asiyajavayant.png" },
+    { StartLocation: "Bernardo Dominic", image: "bernardodominic.png" },
+    { StartLocation: "Elwin Sharvill", image: "elwinsharvill.png" },
+    { StartLocation: "Ioni Bowcher", image: "ionibowcher.png" },
+    { StartLocation: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
+    { StartLocation: "Onyama Limba", image: "onyamalimba.png" },
+    { StartLocation: "Stephen Shaw", image: "stephenshaw.png" },
+    { StartLocation: "XuXue Feng", image: "xuxuefeng.png" },
   ]);
   const [statuses] = useState<string[]>([
     "unqualified",
@@ -37,25 +77,6 @@ export default function JourneyList() {
     "negotiation",
     "renewal",
   ]);
-
-  const getSeverity = (status: string) => {
-    switch (status) {
-      case "unqualified":
-        return "danger";
-
-      case "qualified":
-        return "success";
-
-      case "new":
-        return "info";
-
-      case "negotiation":
-        return "warning";
-
-      case "renewal":
-        return null;
-    }
-  };
 
   useEffect(() => {
     setCustomers(getCustomers(representatives));
@@ -82,23 +103,6 @@ export default function JourneyList() {
     setGlobalFilterValue(value);
   };
 
-  const renderHeader = () => {
-    return (
-      <div className="flex justify-content-end">
-        <IconField iconPosition="left">
-          <InputIcon className="pi pi-search" />
-          <InputText
-            value={globalFilterValue}
-            onChange={onGlobalFilterChange}
-            placeholder="Keyword Search"
-          />
-        </IconField>
-      </div>
-    );
-  };
-
-  const header = renderHeader();
-
   return (
     <div>
       <h1>Journey List</h1>
@@ -110,39 +114,61 @@ export default function JourneyList() {
         filters={filters}
         filterDisplay="row"
         loading={loading}
-        globalFilterFields={["name", "name", "representative.name", "status"]}
-        header={header}
+        globalFilterFields={[
+          "StartLocation",
+          "StartTime",
+          "ArrivalLocation",
+          "ArrivalTime",
+          "TransportType",
+          "DistanceKm",
+        ]}
         emptyMessage="No customers found."
       >
         <Column
-          field="name"
-          header="Name"
+          field="StartLocation"
+          header="StartLocation"
           filter
-          filterPlaceholder="Search by name"
+          filterPlaceholder="Search by StartLocation"
           style={{ minWidth: "12rem" }}
         />
 
         <Column
-          field="name"
-          header="Name"
+          field="StartTime"
+          header="StartTime"
           filter
-          filterPlaceholder="Search by name"
+          filterPlaceholder="Search by StartTime"
           style={{ minWidth: "12rem" }}
         />
 
         <Column
-          field="name"
-          header="Name"
+          field="ArrivalLocation"
+          header="ArrivalLocation"
           filter
-          filterPlaceholder="Search by name"
+          filterPlaceholder="Search by ArrivalLocation"
           style={{ minWidth: "12rem" }}
         />
 
         <Column
-          field="name"
-          header="Name"
+          field="ArrivalTime"
+          header="ArrivalTime"
           filter
-          filterPlaceholder="Search by name"
+          filterPlaceholder="Search by ArrivalTime"
+          style={{ minWidth: "12rem" }}
+        />
+
+        <Column
+          field="TransportType"
+          header="TransportType"
+          filter
+          filterPlaceholder="Search by TransportType"
+          style={{ minWidth: "12rem" }}
+        />
+
+        <Column
+          field="DistanceKm"
+          header="DistanceKm"
+          filter
+          filterPlaceholder="Search by DistanceKm"
           style={{ minWidth: "12rem" }}
         />
       </DataTable>
